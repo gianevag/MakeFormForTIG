@@ -1,0 +1,10 @@
+/wwwroot/Uploads/
+/wwwroot/lib/
+/wwwroot/images/
+/appsettings.json
+/bin/
+/.vscode
+/obj/
+/appsettings.Development.json
+/wwwroot/.DS_Store
+/.DS_Store
