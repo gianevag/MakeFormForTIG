@@ -74,7 +74,8 @@ namespace MakeFormForTIG.Controllers
                                                   JewelId = x.JewelryId,
                                                   Price = x.Price,
                                                   photo = x.first_thumb_photo,
-                                                  Title = x.Title
+                                                  Title = x.Title,
+                                                  OrderInFirstPage = x.orderInFirstPage
                                               }).ToList();
 
             var a =
@@ -88,7 +89,8 @@ namespace MakeFormForTIG.Controllers
                         photo = x.photo,
                         price = x.Price,
                         title = x.Title,
-                        jewelId = x.JewelId
+                        jewelId = x.JewelId,
+                        orderInFirstPage = x.OrderInFirstPage
                     };
                 }).ToList()
             };
@@ -231,6 +233,7 @@ namespace MakeFormForTIG.Controllers
             jewel.isPersonalized = Convert.ToInt32(model.Personalized.isPersonalized);
             jewel.isRing = Convert.ToInt32(model.Rings.isRings);
             jewel.isEarring = Convert.ToInt32(model.Earrings.isEarring);
+            jewel.isFirstPage = Convert.ToInt32(model.OrderInFirstPage.isFirstPage);
 
             return jewel;
         }
@@ -248,6 +251,7 @@ namespace MakeFormForTIG.Controllers
             formdata.Necklaces.isNecklaces = Convert.ToBoolean(Convert.ToInt16(model.isNecklace));
             formdata.Personalized.isPersonalized = Convert.ToBoolean(Convert.ToInt16(model.isPersonalized));
             formdata.Rings.isRings = Convert.ToBoolean(Convert.ToInt16(model.isRing));
+            formdata.OrderInFirstPage.isFirstPage = Convert.ToBoolean(Convert.ToInt16(model.isFirstPage));
             return formdata;
         }
 

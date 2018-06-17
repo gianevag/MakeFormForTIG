@@ -17,6 +17,8 @@ namespace MakeFormForTIG.Models
         public RingsViewModels Rings { get; set; } = new RingsViewModels();
         public NecklacesViewModels Necklaces { get; set; } = new NecklacesViewModels();
         public BraceletsViewModels Bracelets { get; set; } = new BraceletsViewModels();
+        public OrderInFirstPageViewModel OrderInFirstPage { get; set; } = new OrderInFirstPageViewModel();
+
         [Required]
         public IFormFile first_thumb_file { get; set; }
         [Required]

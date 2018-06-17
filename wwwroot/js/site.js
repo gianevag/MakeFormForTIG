@@ -42,6 +42,7 @@ $(document).ready(() => {
             { "data": "jewelId" },
             { "data": "title" },
             { "data": "price" },
+            { "data": "orderInFirstPage" },
             {
                 "render": function (data, type, full, meta) { return '<a class="btn btn-info" href="/home/Jewelry/' + full.id + '">Edit</a><a class="btn btn-danger" href="/home/GetAllJewelries" onclick = DeleteData(' +'"'+ (full.id) +'"'+ ') ">Delete</a>'; }
             }
