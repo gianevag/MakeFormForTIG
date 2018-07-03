@@ -195,7 +195,7 @@ namespace MakeFormForTIG.Controllers
                         ContentDispositionHeaderValue.Parse(file.ContentDisposition);
                     var filename = Path.Combine(_configuration.GetSection("UploadFilePath").Value, parsedContentDisposition.FileName.Trim('"'));
                     var hostingFilename = Path.Combine(_hostingEnvironment.WebRootPath, "images/shop", parsedContentDisposition.FileName.Trim('"'));
-
+                    System.Console.WriteLine(file.Length);
                     //copy data to TIG file path
                     CopyData(file, filename);
                     //copy data to hosting inv
