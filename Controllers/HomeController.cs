@@ -208,7 +208,7 @@ namespace MakeFormForTIG.Controllers
         {
             using (var stream = System.IO.File.OpenWrite(filename))
             {
-                file.CopyToAsync(stream);
+                file.CopyTo(stream);
             }
         }
 
