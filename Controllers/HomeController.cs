@@ -211,7 +211,7 @@ namespace MakeFormForTIG.Controllers
                 streamFilename.Position = 0;
                 file.CopyTo(streamFilename);
             }
-            using (var streamHostingFilename = System.IO.File.OpenWrite(filename))
+            using (var streamHostingFilename = System.IO.File.OpenWrite(hostingFilename))
             {
                 streamHostingFilename.Position = 0;
                 file.CopyTo(streamHostingFilename);
