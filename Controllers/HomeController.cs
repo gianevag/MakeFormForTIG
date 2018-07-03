@@ -197,19 +197,24 @@ namespace MakeFormForTIG.Controllers
                     var hostingFilename = Path.Combine(_hostingEnvironment.WebRootPath, "images/shop", parsedContentDisposition.FileName.Trim('"'));
                     System.Console.WriteLine(file.Length);
                     //copy data to TIG file path
-                    CopyData(file, filename);
+                    CopyData(file, filename,hostingFilename);
                     //copy data to hosting inv
-                    CopyData(file, hostingFilename);
+                    //CopyData(file, hostingFilename);
                 }
             }
         }
 
-        public void CopyData(IFormFile file, string filename)
+        public void CopyData(IFormFile file, string filename, string hostingFilename)
         {
-            using (var stream = System.IO.File.OpenWrite(filename))
+            using (var streamFilename = System.IO.File.OpenWrite(filename))
             {
-                stream.Position = 0;
-                file.CopyTo(stream);
+                streamFilename.Position = 0;
+                file.CopyTo(streamFilename);
+            }
+            using (var streamHostingFilename = System.IO.File.OpenWrite(filename))
+            {
+                streamHostingFilename.Position = 0;
+                file.CopyTo(streamHostingFilename);
             }
         }
 
