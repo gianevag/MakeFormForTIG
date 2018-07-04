@@ -20,6 +20,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 
 namespace MakeFormForTIG.Controllers
 {
@@ -28,12 +29,14 @@ namespace MakeFormForTIG.Controllers
         public IConfiguration _configuration { get; }
         private readonly modelContext _context = null;
         private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly ILogger _logger;
 
-        public HomeController(IOptions<Setting> settings, IHostingEnvironment hostingEnvironment, IConfiguration configuration)
+        public HomeController(IOptions<Setting> settings, IHostingEnvironment hostingEnvironment, IConfiguration configuration,ILoggerFactory loggerFactory)
         {
             _context = new modelContext(settings);
             _hostingEnvironment = hostingEnvironment;
             _configuration = configuration;
+            _logger = loggerFactory.CreateLogger<HomeController>();
         }
 
         [Authorize]
@@ -202,6 +205,7 @@ namespace MakeFormForTIG.Controllers
                     System.Console.WriteLine(file.FileName);
                     System.Console.WriteLine(file.Length);
 
+                    _logger.LogDebug("ANTE GAMHSOU");
                     //copy data to TIG file path
                     CopyData(file, filename,hostingFilename);
                     //copy data to hosting inv
