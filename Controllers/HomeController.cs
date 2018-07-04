@@ -126,6 +126,9 @@ namespace MakeFormForTIG.Controllers
         [HttpPost("Edit/{id}"), ActionName("Edit")]
         public IActionResult GetJewelry(string id, FormData model)
         {
+        
+        if (ModelState.IsValid)
+            {
             UploadFiles(model);
 
             var _jewel = FormDataToJewelry(model);
@@ -134,6 +137,8 @@ namespace MakeFormForTIG.Controllers
             var result = _context.JewelriesLinq.ReplaceOne(x => x.Id.Equals(_jewel.Id), _jewel, new UpdateOptions { IsUpsert = true });
 
             return RedirectToAction("GetAllJewelries");
+            }
+            return StatusCode(400);
         }
 
         [Authorize]
