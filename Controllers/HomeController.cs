@@ -186,7 +186,8 @@ namespace MakeFormForTIG.Controllers
         {
             Microsoft.AspNetCore.Http.IFormFile[] files =
                 {model.first_thumb_file,model.second_thumb_file,model.yellowPhoto_file,model.whitePhoto_file,model.rosePhoto_file};
-
+                System.Console.WriteLine("FILE INFO");
+                System.Console.WriteLine(files[1].Name);
             foreach (var file in files)
             {
                 if (file != null)
