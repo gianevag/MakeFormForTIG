@@ -190,7 +190,7 @@ namespace MakeFormForTIG.Controllers
 
         // FUNCTION AREA
         //save images to upload file path
-        public void UploadFiles(FormData model)
+        public async void UploadFiles(FormData model)
         {
             Microsoft.AspNetCore.Http.IFormFile[] files =
                 {model.first_thumb_file,model.second_thumb_file,model.yellowPhoto_file,model.whitePhoto_file,model.rosePhoto_file};
@@ -210,16 +210,16 @@ namespace MakeFormForTIG.Controllers
                     System.Console.WriteLine(file.FileName);
                     System.Console.WriteLine(file.Length);
 
-                    _logger.LogDebug("ANTE GAMHSOU");
+                    _logger.LogInformation("ANTE GAMHSOU");
                     //copy data to TIG file path
-                    CopyData(file, filename,hostingFilename);
+                    await CopyDataAsync(file, filename,hostingFilename);
                     //copy data to hosting inv
                     //CopyData(file, hostingFilename);
                 }
             }
         }
 
-        public void CopyData(IFormFile file, string filename, string hostingFilename)
+        public async Task CopyDataAsync(IFormFile file, string filename, string hostingFilename)
         {
             using (var streamFilename = System.IO.File.OpenWrite(filename))
             {
@@ -229,7 +229,7 @@ namespace MakeFormForTIG.Controllers
                     System.Console.WriteLine(file.Length);
 
                 streamFilename.Position = 0;
-                file.CopyTo(streamFilename);
+                await file.CopyToAsync(streamFilename);
             }
             using (var streamHostingFilename = System.IO.File.OpenWrite(hostingFilename))
             {
@@ -240,7 +240,7 @@ namespace MakeFormForTIG.Controllers
                     System.Console.WriteLine(file.Length);
 
                 streamHostingFilename.Position = 0;
-                file.CopyTo(streamHostingFilename);
+                await file.CopyToAsync(streamHostingFilename);
             }
         }
 
