@@ -194,8 +194,8 @@ namespace MakeFormForTIG.Controllers
         {
             Microsoft.AspNetCore.Http.IFormFile[] files =
                 {model.first_thumb_file,model.second_thumb_file,model.yellowPhoto_file,model.whitePhoto_file,model.rosePhoto_file};
-                System.Console.WriteLine("FILE INFO");
-                System.Console.WriteLine(files[1].Name);
+               // System.Console.WriteLine("FILE INFO");
+                //System.Console.WriteLine(files[1].Name);
             foreach (var file in files)
             {
                 if (file != null)
@@ -210,7 +210,7 @@ namespace MakeFormForTIG.Controllers
                     System.Console.WriteLine(file.FileName);
                     System.Console.WriteLine(file.Length);
 
-                    _logger.LogInformation("ANTE GAMHSOU");
+                    _logger.LogWarning("ANTE GAMHSOU");
                     //copy data to TIG file path
                     await CopyDataAsync(file, filename,hostingFilename);
                     //copy data to hosting inv
