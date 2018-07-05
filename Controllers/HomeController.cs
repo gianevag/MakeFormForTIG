@@ -127,18 +127,18 @@ namespace MakeFormForTIG.Controllers
         public IActionResult GetJewelry(string id, FormData model)
         {
         
-        if (ModelState.IsValid)
-            {
-            UploadFiles(model);
+        //if (ModelState.IsValid)
+          //  {
+                UploadFiles(model);
 
-            var _jewel = FormDataToJewelry(model);
-            _jewel.Id = ObjectId.Parse(id);
+                var _jewel = FormDataToJewelry(model);
+                _jewel.Id = ObjectId.Parse(id);
 
-            var result = _context.JewelriesLinq.ReplaceOne(x => x.Id.Equals(_jewel.Id), _jewel, new UpdateOptions { IsUpsert = true });
+                var result = _context.JewelriesLinq.ReplaceOne(x => x.Id.Equals(_jewel.Id), _jewel, new UpdateOptions { IsUpsert = true });
 
-            return RedirectToAction("GetAllJewelries");
-            }
-            return StatusCode(400);
+                return RedirectToAction("GetAllJewelries");
+           // }
+            //return StatusCode(400);
         }
 
         [Authorize]
@@ -202,8 +202,8 @@ namespace MakeFormForTIG.Controllers
                 {
                     var parsedContentDisposition =
                         ContentDispositionHeaderValue.Parse(file.ContentDisposition);
-                    var filename = Path.Combine(_configuration.GetSection("UploadFilePath").Value, parsedContentDisposition.FileName.Trim('"'));
-                    var hostingFilename = Path.Combine(_hostingEnvironment.WebRootPath, "images/shop", parsedContentDisposition.FileName.Trim('"'));
+                    var filename = Path.Combine(_configuration.GetSection("UploadFilePath").Value,file.FileName);
+                    var hostingFilename = Path.Combine(_hostingEnvironment.WebRootPath, "images/shop",file.FileName);
                     
                     System.Console.WriteLine("FILE INFO");
                     System.Console.WriteLine(file.Name);
