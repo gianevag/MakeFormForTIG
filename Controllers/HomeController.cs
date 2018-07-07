@@ -257,7 +257,7 @@ namespace MakeFormForTIG.Controllers
             // }
 
 
-            using (var streamFilename = new FileStream(filename,FileMode.Create))
+            using (var streamFilename = new FileStream(filename,FileMode.Create,FileAccess.Write))
             {       
                 try
                 {
@@ -271,7 +271,7 @@ namespace MakeFormForTIG.Controllers
                 }        
                    
             }
-            using (var streamHostingFilename = new FileStream(hostingFilename, FileMode.Create))
+            using (var streamHostingFilename = new FileStream(hostingFilename, FileMode.Create,FileAccess.Write))
             {
                     try
                     {
