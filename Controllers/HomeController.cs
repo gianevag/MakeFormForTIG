@@ -223,17 +223,17 @@ namespace MakeFormForTIG.Controllers
 
         public async Task CopyDataAsync(IFormFile file, string filename, string hostingFilename)
         {
-            /* here i would try to delete first the file and then to write it
-            if (System.IO.File.Exists(hostingFilename))
-            {
-                System.IO.File.Delete(hostingFilename);  
-            }
+            // here i would try to delete first the file and then to write it
+            // if (System.IO.File.Exists(hostingFilename))
+            // {
+            //     System.IO.File.Delete(hostingFilename);  
+            // }
             
-            if (System.IO.File.Exists(filename))
-            {
-                 System.IO.File.Delete(filename);
-            }
-             */
+            // if (System.IO.File.Exists(filename))
+            // {
+            //      System.IO.File.Delete(filename);
+            // }
+            
 
             using (var streamFilename = System.IO.File.OpenWrite(filename))
             {       
