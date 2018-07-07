@@ -261,9 +261,9 @@ namespace MakeFormForTIG.Controllers
             {       
                 try
                 {
-                    streamFilename.Position = 0;
+                    //streamFilename.Position = 0;
                     file.CopyTo(streamFilename);
-                    streamFilename.Dispose();
+                    //streamFilename.Dispose();
                 }
                 catch (System.Exception e)
                 {
@@ -276,9 +276,9 @@ namespace MakeFormForTIG.Controllers
             {
                     try
                     {
-                        streamHostingFilename.Position = 0;
+                        //streamHostingFilename.Position = 0;
                         file.CopyTo(streamHostingFilename);
-                        streamHostingFilename.Dispose();
+                        //streamHostingFilename.Dispose();
                     }
                     catch (System.Exception e)
                     {
