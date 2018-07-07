@@ -214,7 +214,10 @@ namespace MakeFormForTIG.Controllers
 
                     _logger.LogWarning("ANTE GAMHSOU");
                     //copy data to TIG file path
-                    await CopyDataAsync(file, filename,hostingFilename);
+                    if (file.Length > 0)
+                    {
+                        await CopyDataAsync(file, filename,hostingFilename);
+                    }
                     //copy data to hosting inv
                     //CopyData(file, hostingFilename);
                 }
@@ -224,44 +227,46 @@ namespace MakeFormForTIG.Controllers
         public async Task CopyDataAsync(IFormFile file, string filename, string hostingFilename)
         {
             // here i would try to delete first the file and then to write it
+
+            
             // if (System.IO.File.Exists(hostingFilename))
             // {
-            //     System.IO.File.Delete(hostingFilename);  
+            //     try
+            //     {
+            //         System.IO.File.Delete(hostingFilename);  
+            //     }
+            //     catch (System.IO.IOException e)
+            //     {
+            //         Console.WriteLine(e.Message);
+            //         return;
+            //     }
+
             // }
             
             // if (System.IO.File.Exists(filename))
             // {
-            //      System.IO.File.Delete(filename);
+            //     try
+            //     {
+            //         System.IO.File.Delete(filename);  
+            //     }
+            //     catch (System.IO.IOException e)
+            //     {
+            //         Console.WriteLine(e.Message);
+            //         return;
+            //     }
             // }
-            
 
-            using (var streamFilename = System.IO.File.OpenWrite(filename))
-            {       
-                    
-                    // System.Console.WriteLine("FILE INFO streamFilename");
-                    // System.Console.WriteLine(file.Name);
-                    // System.Console.WriteLine(file.FileName);
-                    // System.Console.WriteLine(file.Length);
-                    
-                if (file.Length != 0)
-                {
-                    //streamFilename.Position = 0;
-                    //await file.CopyToAsync(streamFilename);
-                }
+
+            using (var streamFilename = new FileStream(filename,FileMode.Create))
+            {               
+                    streamFilename.Position = 0;
+                    await file.CopyToAsync(streamFilename);
             }
-            using (var streamHostingFilename = System.IO.File.OpenWrite(hostingFilename))
+            using (var streamHostingFilename = new FileStream(hostingFilename, FileMode.Create))
             {
                      
-                    // System.Console.WriteLine("FILE INFO streamHostingFilename");
-                    // System.Console.WriteLine(file.Name);
-                    // System.Console.WriteLine(file.FileName);
-                    // System.Console.WriteLine(file.Length);
-                    
-                if (file.Length != 0)
-                {
-                    //streamHostingFilename.Position = 0;
-                    //await file.CopyToAsync(streamHostingFilename);
-                }
+                    streamHostingFilename.Position = 0;
+                    await file.CopyToAsync(streamHostingFilename);
                 
             }
         }
