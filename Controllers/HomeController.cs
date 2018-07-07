@@ -205,11 +205,13 @@ namespace MakeFormForTIG.Controllers
                     var filename = Path.Combine(_configuration.GetSection("UploadFilePath").Value,file.FileName);
                     var hostingFilename = Path.Combine(_hostingEnvironment.WebRootPath, "images/shop",file.FileName);
                     
+                    /* 
                     System.Console.WriteLine("FILE INFO");
                     System.Console.WriteLine(file.Name);
                     System.Console.WriteLine(file.FileName);
                     System.Console.WriteLine(file.Length);
-
+                    */
+                    
                     _logger.LogWarning("ANTE GAMHSOU");
                     //copy data to TIG file path
                     await CopyDataAsync(file, filename,hostingFilename);
@@ -253,7 +255,7 @@ namespace MakeFormForTIG.Controllers
                     System.Console.WriteLine(file.FileName);
                     System.Console.WriteLine(file.Length);
                     */
-                    
+
                 streamHostingFilename.Position = 0;
                 await file.CopyToAsync(streamHostingFilename);
                 
