@@ -190,7 +190,7 @@ namespace MakeFormForTIG.Controllers
 
         // FUNCTION AREA
         //save images to upload file path
-        public async void UploadFiles(FormData model)
+        public  void UploadFiles(FormData model)
         {
             Microsoft.AspNetCore.Http.IFormFile[] files =
                 {model.first_thumb_file,model.second_thumb_file,model.yellowPhoto_file,model.whitePhoto_file,model.rosePhoto_file};
@@ -216,7 +216,7 @@ namespace MakeFormForTIG.Controllers
                     //copy data to TIG file path
                     if (file.Length > 0)
                     {
-                        await CopyDataAsync(file, filename,hostingFilename);
+                        CopyData(file, filename,hostingFilename);
                     }
                     //copy data to hosting inv
                     //CopyData(file, hostingFilename);
@@ -224,7 +224,7 @@ namespace MakeFormForTIG.Controllers
             }
         }
 
-        public async Task CopyDataAsync(IFormFile file, string filename, string hostingFilename)
+        public void CopyData(IFormFile file, string filename, string hostingFilename)
         {
             // here i would try to delete first the file and then to write it
 
@@ -262,7 +262,8 @@ namespace MakeFormForTIG.Controllers
                 try
                 {
                     streamFilename.Position = 0;
-                    await file.CopyToAsync(streamFilename);
+                    file.CopyTo(streamFilename);
+                    streamFilename.Dispose();
                 }
                 catch (System.Exception e)
                 {
@@ -271,12 +272,13 @@ namespace MakeFormForTIG.Controllers
                 }        
                    
             }
-            using (var streamHostingFilename = new FileStream(hostingFilename, FileMode.Create,FileAccess.Write))
+            using (var streamHostingFilename = new FileStream(hostingFilename, FileMode.Create, FileAccess.Write))
             {
                     try
                     {
                         streamHostingFilename.Position = 0;
-                        await file.CopyToAsync(streamHostingFilename);
+                        file.CopyTo(streamHostingFilename);
+                        streamHostingFilename.Dispose();
                     }
                     catch (System.Exception e)
                     {
