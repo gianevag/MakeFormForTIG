@@ -245,8 +245,8 @@ namespace MakeFormForTIG.Controllers
                     
                 if (file.Length != 0)
                 {
-                    streamFilename.Position = 0;
-                    await file.CopyToAsync(streamFilename);
+                    //streamFilename.Position = 0;
+                    //await file.CopyToAsync(streamFilename);
                 }
             }
             using (var streamHostingFilename = System.IO.File.OpenWrite(hostingFilename))
@@ -259,8 +259,8 @@ namespace MakeFormForTIG.Controllers
                     
                 if (file.Length != 0)
                 {
-                    streamHostingFilename.Position = 0;
-                    await file.CopyToAsync(streamHostingFilename);
+                    //streamHostingFilename.Position = 0;
+                    //await file.CopyToAsync(streamHostingFilename);
                 }
                 
             }
