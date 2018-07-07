@@ -258,15 +258,31 @@ namespace MakeFormForTIG.Controllers
 
 
             using (var streamFilename = new FileStream(filename,FileMode.Create))
-            {               
+            {       
+                try
+                {
                     streamFilename.Position = 0;
                     await file.CopyToAsync(streamFilename);
+                }
+                catch (System.Exception e)
+                {
+                    
+                    System.Console.WriteLine(e);
+                }        
+                   
             }
             using (var streamHostingFilename = new FileStream(hostingFilename, FileMode.Create))
             {
-                     
-                    streamHostingFilename.Position = 0;
-                    await file.CopyToAsync(streamHostingFilename);
+                    try
+                    {
+                        streamHostingFilename.Position = 0;
+                        await file.CopyToAsync(streamHostingFilename);
+                    }
+                    catch (System.Exception e)
+                    {
+                        System.Console.WriteLine(e);
+                    }
+                    
                 
             }
         }
