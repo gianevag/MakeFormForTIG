@@ -194,8 +194,7 @@ namespace MakeFormForTIG.Controllers
         {
             Microsoft.AspNetCore.Http.IFormFile[] files =
                 {model.first_thumb_file,model.second_thumb_file,model.yellowPhoto_file,model.whitePhoto_file,model.rosePhoto_file};
-               // System.Console.WriteLine("FILE INFO");
-                //System.Console.WriteLine(files[1].Name);
+
             foreach (var file in files)
             {
                 if (file != null)
@@ -204,27 +203,21 @@ namespace MakeFormForTIG.Controllers
                         ContentDispositionHeaderValue.Parse(file.ContentDisposition);
                     var filename = Path.Combine(_configuration.GetSection("UploadFilePath").Value,file.FileName);
                     var hostingFilename = Path.Combine(_hostingEnvironment.WebRootPath, "images/shop",file.FileName);
+                    var standartPath = Path.Combine(_configuration.GetSection("UploadStandartPath").Value,file.FileName);
                     
                      
-                    // System.Console.WriteLine("FILE INFO");
-                    // System.Console.WriteLine(file.Name);
-                    // System.Console.WriteLine(file.FileName);
-                    // System.Console.WriteLine(file.Length);
-                    
-
                     _logger.LogWarning("ANTE GAMHSOU");
                     //copy data to TIG file path
                     if (file.Length > 0)
                     {
-                        CopyData(file, filename,hostingFilename);
+                        CopyData(file, filename,hostingFilename,standartPath);
                     }
-                    //copy data to hosting inv
-                    //CopyData(file, hostingFilename);
+
                 }
             }
         }
 
-        public void CopyData(IFormFile file, string filename, string hostingFilename)
+        public void CopyData(IFormFile file, string filename, string hostingFilename,string standartPath)
         {
             // here i would try to delete first the file and then to write it
 
@@ -273,24 +266,29 @@ namespace MakeFormForTIG.Controllers
             //     }        
                    
             // }
-            using (var streamHostingFilename = new FileStream(hostingFilename, FileMode.Create, FileAccess.Write))
+            using (var streamHostingFilename = new FileStream(standartPath, FileMode.CreateNew, FileAccess.Write))
             {
                     try
                     {
-                        streamHostingFilename.Position = 0;
                         _logger.LogWarning(file.FileName + ':' + file.Length);
+
+                        streamHostingFilename.Position = 0;
+                        streamHostingFilename.Flush(true);
+                        
                         file.CopyTo(streamHostingFilename);
                         streamHostingFilename.Dispose();
                     }
                     catch (System.Exception e)
                     {
                         System.Console.WriteLine(e);
+                        
                     }              
             }
 
             // To copy a file to another location and 
             // overwrite the destination file if it already exists.
-            System.IO.File.Copy(hostingFilename,filename,true);
+            System.IO.File.Copy(standartPath,filename,true);
+            System.IO.File.Copy(standartPath,hostingFilename,true);
         }
 
         //Tranform data from FormData model to Jewelry Model
