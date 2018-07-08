@@ -257,22 +257,22 @@ namespace MakeFormForTIG.Controllers
             // }
 
 
-            using (var streamFilename = new FileStream(filename,FileMode.Create,FileAccess.Write))
-            {       
-                try
-                {
-                    streamFilename.Position = 0;
-                    _logger.LogWarning(file.FileName + ':' + file.Length);
-                    file.CopyTo(streamFilename);
-                    streamFilename.Dispose();
-                }
-                catch (System.Exception e)
-                {
+            // using (var streamFilename = new FileStream(filename,FileMode.Create,FileAccess.Write))
+            // {       
+            //     try
+            //     {
+            //         streamFilename.Position = 0;
+            //         _logger.LogWarning(file.FileName + ':' + file.Length);
+            //         file.CopyTo(streamFilename);
+            //         streamFilename.Dispose();
+            //     }
+            //     catch (System.Exception e)
+            //     {
                     
-                    System.Console.WriteLine(e);
-                }        
+            //         System.Console.WriteLine(e);
+            //     }        
                    
-            }
+            // }
             using (var streamHostingFilename = new FileStream(hostingFilename, FileMode.Create, FileAccess.Write))
             {
                     try
@@ -285,10 +285,12 @@ namespace MakeFormForTIG.Controllers
                     catch (System.Exception e)
                     {
                         System.Console.WriteLine(e);
-                    }
-                    
-                
+                    }              
             }
+
+            // To copy a file to another location and 
+            // overwrite the destination file if it already exists.
+            System.IO.File.Copy(hostingFilename,filename,true);
         }
 
         //Tranform data from FormData model to Jewelry Model
