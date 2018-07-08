@@ -126,19 +126,14 @@ namespace MakeFormForTIG.Controllers
         [HttpPost("Edit/{id}"), ActionName("Edit")]
         public IActionResult GetJewelry(string id, FormData model)
         {
-        
-        //if (ModelState.IsValid)
-          //  {
-                UploadFiles(model);
+            UploadFiles(model);
 
-                var _jewel = FormDataToJewelry(model);
-                _jewel.Id = ObjectId.Parse(id);
+            var _jewel = FormDataToJewelry(model);
+            _jewel.Id = ObjectId.Parse(id);
 
-                var result = _context.JewelriesLinq.ReplaceOne(x => x.Id.Equals(_jewel.Id), _jewel, new UpdateOptions { IsUpsert = true });
+            var result = _context.JewelriesLinq.ReplaceOne(x => x.Id.Equals(_jewel.Id), _jewel, new UpdateOptions { IsUpsert = true });
 
-                return RedirectToAction("GetAllJewelries");
-           // }
-            //return StatusCode(400);
+            return RedirectToAction("GetAllJewelries");
         }
 
         [Authorize]
@@ -206,7 +201,7 @@ namespace MakeFormForTIG.Controllers
                     var standartPath = Path.Combine(_configuration.GetSection("UploadStandartPath").Value,file.FileName);
                     
                      
-                    _logger.LogWarning("ANTE GAMHSOU");
+                    _logger.LogWarning("FILE UPLOAD");
                     //copy data to TIG file path
                     if (file.Length > 0)
                     {
@@ -219,53 +214,7 @@ namespace MakeFormForTIG.Controllers
 
         public void CopyData(IFormFile file, string filename, string hostingFilename,string standartPath)
         {
-            // here i would try to delete first the file and then to write it
-
             
-            // if (System.IO.File.Exists(hostingFilename))
-            // {
-            //     try
-            //     {
-            //         System.IO.File.Delete(hostingFilename);  
-            //     }
-            //     catch (System.IO.IOException e)
-            //     {
-            //         Console.WriteLine(e.Message);
-            //         return;
-            //     }
-
-            // }
-            
-            // if (System.IO.File.Exists(filename))
-            // {
-            //     try
-            //     {
-            //         System.IO.File.Delete(filename);  
-            //     }
-            //     catch (System.IO.IOException e)
-            //     {
-            //         Console.WriteLine(e.Message);
-            //         return;
-            //     }
-            // }
-
-
-            // using (var streamFilename = new FileStream(filename,FileMode.Create,FileAccess.Write))
-            // {       
-            //     try
-            //     {
-            //         streamFilename.Position = 0;
-            //         _logger.LogWarning(file.FileName + ':' + file.Length);
-            //         file.CopyTo(streamFilename);
-            //         streamFilename.Dispose();
-            //     }
-            //     catch (System.Exception e)
-            //     {
-                    
-            //         System.Console.WriteLine(e);
-            //     }        
-                   
-            // }
             if(!System.IO.File.Exists(standartPath))
             {
                 using (var streamHostingFilename = new FileStream(standartPath, FileMode.CreateNew, FileAccess.Write))

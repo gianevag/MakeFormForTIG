@@ -87,17 +87,17 @@
   </div>
   <div class="form-row">
     <label class="col-md-1 col-form-label">Diamond</label>      
-    <div class="col-md-1">     
+    <div class="form-group col-md-1">     
         <input class="form-check-input" asp-for="Diamond.isDiamond">
     </div>
-    <div class="col-md-2">   
+    <div class="form-group col-md-2">   
       <select asp-for="jewelry.typeOfDiamond" asp-items = "Model.Diamond.Diamond"></select>
     </div>
     <label class="col-md-1 col-form-label">Order In Featured</label>
-    <div class="col-md-1">     
+    <div class="form-group col-md-1">     
         <input class="form-check-input" asp-for="OrderInFirstPage.isFirstPage">
     </div>      
-    <div class="col-md-5">     
+    <div class="form-group col-md-2">     
         <select asp-for="jewelry.orderInFirstPage" asp-items = "Model.OrderInFirstPage.OrderInFirstPage"></select>
     </div>        
   </div>
