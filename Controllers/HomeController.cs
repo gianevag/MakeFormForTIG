@@ -266,29 +266,36 @@ namespace MakeFormForTIG.Controllers
             //     }        
                    
             // }
-            using (var streamHostingFilename = new FileStream(standartPath, FileMode.CreateNew, FileAccess.Write))
+            if(!System.IO.File.Exists(standartPath))
             {
-                    try
-                    {
-                        _logger.LogWarning(file.FileName + ':' + file.Length);
+                using (var streamHostingFilename = new FileStream(standartPath, FileMode.CreateNew, FileAccess.Write))
+                {
+                        try
+                        {
+                            
+                                _logger.LogWarning(file.FileName + ':' + file.Length);
 
-                        streamHostingFilename.Position = 0;
-                        streamHostingFilename.Flush(true);
-                        
-                        file.CopyTo(streamHostingFilename);
-                        streamHostingFilename.Dispose();
-                    }
-                    catch (System.Exception e)
-                    {
-                        System.Console.WriteLine(e);
-                        
-                    }              
+                                streamHostingFilename.Position = 0;
+                                streamHostingFilename.Flush(true);
+                                
+                                file.CopyTo(streamHostingFilename);
+                                streamHostingFilename.Dispose();
+                            
+                            
+                        }
+                        catch (System.Exception e)
+                        {
+                            System.Console.WriteLine(e);
+                            
+                        }              
+                }
+
+                // To copy a file to another location and 
+                // overwrite the destination file if it already exists.
+                System.IO.File.Copy(standartPath,filename,true);
+                System.IO.File.Copy(standartPath,hostingFilename,true);
             }
 
-            // To copy a file to another location and 
-            // overwrite the destination file if it already exists.
-            System.IO.File.Copy(standartPath,filename,true);
-            System.IO.File.Copy(standartPath,hostingFilename,true);
         }
 
         //Tranform data from FormData model to Jewelry Model
