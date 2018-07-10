@@ -3,9 +3,9 @@ function readURL(input) {
     if (input.files && input.files[0]) {
 
         var imgElementId = $("#" + input.id);//.next("img").attr('id');
-        
+        console.log(imgElementId[0].id+'Prv');
         reader.onload = function (e) {
-            $(imgElementId.selector+'Prv').attr('src', e.target.result);
+            $('#'+imgElementId[0].id+'Prv').attr('src', e.target.result);
         }
 
         reader.readAsDataURL(input.files[0]);
