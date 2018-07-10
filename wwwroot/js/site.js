@@ -2,10 +2,10 @@
 function readURL(input) {
     if (input.files && input.files[0]) {
 
-        var imgElementId = $("#" + input.id).next("img").attr('id');
-
+        var imgElementId = $("#" + input.id);//.next("img").attr('id');
+        
         reader.onload = function (e) {
-            $('#' + imgElementId).attr('src', e.target.result);
+            $(imgElementId.selector+'Prv').attr('src', e.target.result);
         }
 
         reader.readAsDataURL(input.files[0]);

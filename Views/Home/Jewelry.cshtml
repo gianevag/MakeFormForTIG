@@ -48,103 +48,173 @@
     </div>
   </div> 
   <!-- TYPE OF JEWELRY -->
-  <div class="form-row">
-    <label class="col-md-1 col-form-label">Necklaces</label>      
-    <div class="form-group col-md-3">     
-        <input class="form-check-input" asp-for="Necklaces.isNecklaces">
+
+  <!-- 1st ROW -->
+  <div class="form-group row">
+
+    <div class="col-md-1">Necklaces</div>    
+    <div class="col-md-3"> 
+      <div class="form-check">  
+        <input class="form-check-input" asp-for="Necklaces.isNecklaces">  
+      </div>
     </div>
-    <label class="col-md-1 col-form-label">Bracelets</label>      
-    <div class="form-group col-md-3">     
-        <input class="form-check-input" asp-for="Bracelets.isBracelets">
+
+    <div class="col-md-1">Bracelets</div>    
+    <div class="col-md-3"> 
+      <div class="form-check">  
+        <input class="form-check-input" asp-for="Bracelets.isBracelets">  
+      </div>
     </div>
-    <label class="col-md-1 col-form-label">Rings</label>      
-    <div class="form-group col-md-3">     
-        <input class="form-check-input" asp-for="Rings.isRings">
-    </div>        
-  </div>  
-  <div class="form-row">
-    <label class="col-md-1 col-form-label">Earrings</label>
-    <div class="form-group col-md-1">     
+
+    <div class="col-md-1">Rings</div>    
+    <div class="col-md-3"> 
+      <div class="form-check">  
+        <input class="form-check-input" asp-for="Rings.isRings">  
+      </div>
+    </div>
+
+  </div> 
+
+
+  <!-- 2st ROW -->
+  <div class="form-group row">
+
+    <div class="col-md-1">Personalized</div>
+      <div class="col-md-1"> 
+        <div class="form-check">      
+        <input class="form-check-input" asp-for="Personalized.isPersonalized">
+        </div>
+      </div>
+      <div class="col-md-2">       
+        <select asp-for="jewelry.typeOfPersonalized" asp-items = "Model.Personalized.Personalized"></select>
+      </div> 
+
+
+    <div class="col-md-1">Earrings</div>
+      <div class="col-md-1"> 
+        <div class="form-check">      
         <input class="form-check-input" asp-for="Earrings.isEarring">
       </div>
-      <div class="form-group col-md-2">       
+      </div>
+      <div class="col-md-2">       
         <select asp-for="jewelry.typeOfEarring" asp-items = "Model.Earrings.Earrings"></select>
       </div>  
-    <label class="col-md-1 col-form-label">Personalized</label>      
-    <div class="form-group col-md-1">     
-        <input class="form-check-input" asp-for="Personalized.isPersonalized">
-    </div>
-      <div class="form-group col-md-2">   
-        <select asp-for="jewelry.typeOfPersonalized" asp-items = "Model.Personalized.Personalized"></select>
-      </div>
-    <label class="col-md-1 col-form-label">Birthstones</label>      
-    <div class="form-group col-md-1">     
+
+
+    <div class="col-md-1">Birthstones</div>
+      <div class="col-md-1">
+        <div class="form-check">     
         <input class="form-check-input" asp-for="Birthstones.isBirthstones">
-    </div>
-      <div class="form-group col-md-2">   
+      </div>
+      </div>
+      <div class="col-md-2">       
         <select asp-for="jewelry.typeOfBirthstone" asp-items = "Model.Birthstones.Birthstones"></select>
-      </div>               
+      </div>  
+          
   </div>
-  <div class="form-row">
-    <label class="col-md-1 col-form-label">Diamond</label>      
-    <div class="form-group col-md-1">     
+
+  <!-- 2st ROW -->
+  <div class="form-group row">
+    
+    <div class="col-md-1">Diamond</div>
+      <div class="col-md-1"> 
+        <div class="form-check">      
         <input class="form-check-input" asp-for="Diamond.isDiamond">
-    </div>
-    <div class="form-group col-md-2">   
-      <select asp-for="jewelry.typeOfDiamond" asp-items = "Model.Diamond.Diamond"></select>
-    </div>
-    <label class="col-md-1 col-form-label">Order In Featured</label>
-    <div class="form-group col-md-1">     
+        </div>
+      </div>
+      <div class="col-md-2">       
+        <select asp-for="jewelry.typeOfDiamond" asp-items = "Model.Diamond.Diamond"></select>
+      </div> 
+
+
+    <div class="col-md-1">Order In Featured</div>
+      <div class="col-md-1"> 
+        <div class="form-check">      
         <input class="form-check-input" asp-for="OrderInFirstPage.isFirstPage">
-    </div>      
-    <div class="form-group col-md-2">     
+        </div>
+      </div>
+      <div class="col-md-2">       
         <select asp-for="jewelry.orderInFirstPage" asp-items = "Model.OrderInFirstPage.OrderInFirstPage"></select>
-    </div>        
+      </div> 
+
   </div>
+
+ <br>
+ <hr />
+ <br>
+
     <!-- PHOTOS -->
+
     <div class="form-row">
-      <div class="custom-file form-group col-md-12"> 
-        <br>
-        <hr />
-        <label class="custom-file-label" for="customFile">First Thumb</label>
+      <div class="custom-file">    
         <span asp-validation-for="first_thumb_file" class="text-danger"></span>
         <input id="FirstImgUpload" type="file" class="custom-file-input"  name="first_thumb_file">
-        <img id="firstPreviewImgUp" src = @("/images/shop/"+ Model.jewelry.first_thumb_photo + ".jpg") alt="First image photo">
+        <label class="custom-file-label" for="customFile">First Thumb</label>
       </div>
       </div>
       <div class="form-row">
-      <div class="custom-file form-group col-md-12">
-        <label class="custom-file-label" for="customFile">Second Thumb</label>
+      <figure class="figure text-center">   
+        <img class="figure-img img-fluid rounded" id="FirstImgUploadPrv" src = @("/images/shop/"+ Model.jewelry.first_thumb_photo + ".jpg") alt="First image photo">
+      </figure>
+      </div>
+      
+    <div class="form-row">
+      <div class="custom-file">    
         <span asp-validation-for="second_thumb_file" class="text-danger"></span>
         <input id="SecondImgUpload" type="file" class="custom-file-input"  name="second_thumb_file">
-        <img id="secondPreviewImgUp" src = @("/images/shop/"+ Model.jewelry.second_thumb_photo + ".jpg")  alt="Second image photo">
+        <label class="custom-file-label" for="customFile">Second Thumb</label>
       </div>
       </div>
       <div class="form-row">
-      <div class="custom-file form-group col-md-12">
-        <label class="custom-file-label" for="customFile">YellowPhoto</label>
+      <figure class="figure text-center">   
+        <img class="figure-img img-fluid rounded" id="SecondImgUploadPrv" src = @("/images/shop/"+ Model.jewelry.second_thumb_photo + ".jpg") alt="Second image photo">
+      </figure>
+      </div>
+      
+    <div class="form-row">
+      <div class="custom-file">    
         <span asp-validation-for="yellowPhoto_file" class="text-danger"></span>
         <input id="YellowImgUpload" type="file" class="custom-file-input"  name="yellowPhoto_file">
-        <img id="yellowPreviewImgUp" src = @("/images/shop/"+ Model.jewelry.yellowPhoto + ".jpg") alt="Yellow image photo">
+        <label class="custom-file-label" for="customFile">YellowPhoto</label>
       </div>
-      </div> 
+      </div>
       <div class="form-row">
-      <div class="custom-file form-group col-md-12">
-        <label class="custom-file-label" for="customFile">WhitePhoto</label>
+      <figure class="figure text-center">   
+        <img class="figure-img img-fluid rounded" id="YellowImgUploadPrv" src = @("/images/shop/"+ Model.jewelry.yellowPhoto + ".jpg") alt="Yellow image photo">
+      </figure>
+      </div>      
+
+
+    <div class="form-row">
+      <div class="custom-file">    
         <span asp-validation-for="whitePhoto_file" class="text-danger"></span>
         <input id="WhiteImgUpload" type="file" class="custom-file-input"  name="whitePhoto_file">
-        <img id="whitePreviewImgUp" src = @("/images/shop/"+ Model.jewelry.whitePhoto + ".jpg") alt="White image photo">
+        <label class="custom-file-label" for="customFile">WhitePhoto</label>
       </div>
       </div>
       <div class="form-row">
-      <div class="custom-file form-group col-md-12">
-        <label class="custom-file-label" for="customFile">RosePhoto</label>
+      <figure class="figure text-center">   
+        <img class="figure-img img-fluid rounded" id="WhiteImgUploadPrv" src = @("/images/shop/"+ Model.jewelry.whitePhoto + ".jpg") alt="White image photo">
+      </figure>
+      </div>      
+
+    <div class="form-row">
+      <div class="custom-file">    
         <span asp-validation-for="rosePhoto_file" class="text-danger"></span>
         <input id="RoseImgUpload" type="file" class="custom-file-input"  name="rosePhoto_file">
-        <img id="rosePreviewImgUp" src = @("/images/shop/"+ Model.jewelry.rosePhoto + ".jpg") alt="Rose image photo">
-        <hr />
+        <label class="custom-file-label" for="customFile">RosePhoto</label>
       </div>
       </div>
+      <div class="form-row">
+      <figure class="figure text-center">   
+        <img class="figure-img img-fluid rounded" id="RoseImgUploadPrv" src = @("/images/shop/"+ Model.jewelry.rosePhoto + ".jpg") alt="Rose image photo">
+      </figure>
+      </div>  
+
+ <br>
+ <hr />
+ <br>
+
       <!-- INFO -->
       <div class="form-row">
         <div class="form-group col-md-12">
